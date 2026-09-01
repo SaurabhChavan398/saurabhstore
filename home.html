@@ -1,467 +1,546 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Saurabh Store</title>
+<title>Saurabh Store</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #222;
-    }
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  color: #222;
+}
 
-    header {
-      background: #111827;
-      color: white;
-      text-align: center;
-      padding: 25px 15px;
-    }
+header {
+  background: #111827;
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+}
 
-    header h1 {
-      margin-bottom: 8px;
-    }
+header h1 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
 
-    nav {
-      background: #1f2937;
-      padding: 14px;
-      text-align: center;
-    }
+nav {
+  background: #1f2937;
+  padding: 15px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-    }
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 12px;
+  font-weight: bold;
+}
 
-    .hero {
-      background: white;
-      text-align: center;
-      padding: 40px 20px;
-    }
+.hero {
+  background: white;
+  text-align: center;
+  padding: 45px 15px;
+}
 
-    .hero h2 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
+.hero h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
 
-    .products {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      padding: 30px 15px;
-    }
+.search-box {
+  text-align: center;
+  padding: 25px 15px 10px;
+}
 
-    .product {
-      background: white;
-      width: 250px;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 3px 12px #ccc;
-    }
+.search-box input {
+  width: 90%;
+  max-width: 500px;
+  padding: 13px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
 
-    .product-image {
-      font-size: 70px;
-      margin-bottom: 15px;
-    }
+.products {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 30px 15px;
+}
 
-    .product h3 {
-      margin-bottom: 10px;
-    }
+.product {
+  background: white;
+  width: 260px;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 3px 12px #ccc;
+}
 
-    .price {
-      font-size: 20px;
-      font-weight: bold;
-      margin: 12px;
-    }
+.product-image {
+  font-size: 75px;
+  margin-bottom: 15px;
+}
 
-    button {
-      background: #2563eb;
-      color: white;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 7px;
-      cursor: pointer;
-      margin: 4px;
-    }
+.product h3 {
+  margin-bottom: 8px;
+}
 
-    button:hover {
-      background: #1d4ed8;
-    }
+.price {
+  font-size: 21px;
+  font-weight: bold;
+  margin: 12px;
+}
 
-    .cart-section,
-    .checkout {
-      background: white;
-      max-width: 700px;
-      margin: 30px auto;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 3px 12px #ccc;
-    }
+button {
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  margin: 4px;
+}
 
-    .cart-section h2,
-    .checkout h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+button:hover {
+  background: #1d4ed8;
+}
 
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ddd;
-      padding: 12px 0;
-      gap: 10px;
-    }
+.cart,
+.checkout {
+  background: white;
+  max-width: 750px;
+  margin: 35px auto;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px #ccc;
+}
 
-    .quantity button {
-      padding: 5px 10px;
-    }
+.cart h2,
+.checkout h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-    .remove {
-      background: #dc2626;
-    }
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #ddd;
+  padding: 14px 0;
+}
 
-    .remove:hover {
-      background: #b91c1c;
-    }
+.quantity button {
+  padding: 6px 11px;
+}
 
-    .total {
-      text-align: right;
-      font-size: 22px;
-      font-weight: bold;
-      margin-top: 20px;
-    }
+.remove {
+  background: #dc2626;
+}
 
-    .checkout label {
-      display: block;
-      margin-top: 15px;
-      margin-bottom: 6px;
-      font-weight: bold;
-    }
+.remove:hover {
+  background: #b91c1c;
+}
 
-    .checkout input,
-    .checkout textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 7px;
-      font-size: 16px;
-    }
+.total {
+  text-align: right;
+  font-size: 23px;
+  font-weight: bold;
+  margin-top: 20px;
+}
 
-    .checkout textarea {
-      height: 100px;
-      resize: vertical;
-    }
+.checkout label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
 
-    .place-order {
-      width: 100%;
-      margin-top: 20px;
-      font-size: 18px;
-      padding: 13px;
-      background: #16a34a;
-    }
+.checkout input,
+.checkout textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  font-size: 16px;
+}
 
-    .place-order:hover {
-      background: #15803d;
-    }
+.checkout textarea {
+  height: 100px;
+  resize: vertical;
+}
 
-    #message {
-      text-align: center;
-      margin-top: 15px;
-      font-weight: bold;
-    }
+.place-order {
+  width: 100%;
+  background: #16a34a;
+  font-size: 18px;
+  padding: 13px;
+  margin-top: 20px;
+}
 
-    footer {
-      background: #111827;
-      color: white;
-      text-align: center;
-      padding: 22px;
-      margin-top: 40px;
-    }
+.place-order:hover {
+  background: #15803d;
+}
 
-    @media (max-width: 600px) {
-      .cart-item {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+#message {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
+}
 
-      .hero h2 {
-        font-size: 25px;
-      }
+footer {
+  background: #111827;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  margin-top: 40px;
+}
 
-      nav a {
-        margin: 0 8px;
-      }
-    }
-  </style>
+@media (max-width: 600px) {
+
+  nav a {
+    margin: 0 5px;
+    font-size: 14px;
+  }
+
+  .hero h2 {
+    font-size: 25px;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>🛍️ Saurabh Store</h1>
-    <p>Your Online Shopping Store</p>
-  </header>
+<header>
+  <h1>🛍️ Saurabh Store</h1>
+  <p>Your Online Shopping Store</p>
+</header>
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#products">Products</a>
-    <a href="#cart">Cart</a>
-    <a href="#checkout">Checkout</a>
-  </nav>
+<nav>
+  <a href="#home">Home</a>
+  <a href="#products">Products</a>
+  <a href="#cart">Cart</a>
+  <a href="#checkout">Checkout</a>
+</nav>
 
-  <section class="hero" id="home">
-    <h2>Welcome to Saurabh Store</h2>
-    <p>Shop your favourite products online!</p>
-  </section>
+<section class="hero" id="home">
+  <h2>Welcome to Saurabh Store</h2>
+  <p>Shop your favourite products online!</p>
+</section>
 
-  <section class="products" id="products">
+<div class="search-box">
+  <input
+    type="text"
+    id="search"
+    placeholder="🔎 Search products..."
+    onkeyup="searchProducts()"
+  >
+</div>
 
-    <div class="product">
-      <div class="product-image">⌚</div>
-      <h3>Smart Watch</h3>
-      <p>Premium Smart Watch</p>
-      <p class="price">₹999</p>
-      <button onclick="addToCart('Smart Watch', 999)">
-        Add to Cart
-      </button>
-    </div>
+<section class="products" id="products">
 
-    <div class="product">
-      <div class="product-image">🎧</div>
-      <h3>Wireless Headphones</h3>
-      <p>High Quality Headphones</p>
-      <p class="price">₹1499</p>
-      <button onclick="addToCart('Wireless Headphones', 1499)">
-        Add to Cart
-      </button>
-    </div>
-
-    <div class="product">
-      <div class="product-image">👟</div>
-      <h3>Running Shoes</h3>
-      <p>Comfortable Running Shoes</p>
-      <p class="price">₹1999</p>
-      <button onclick="addToCart('Running Shoes', 1999)">
-        Add to Cart
-      </button>
-    </div>
-
-  </section>
-
-  <section class="cart-section" id="cart">
-    <h2>🛒 Your Cart</h2>
-
-    <div id="cartItems">
-      <p>Your cart is empty.</p>
-    </div>
-
-    <div class="total">
-      Total: ₹<span id="total">0</span>
-    </div>
-  </section>
-
-  <section class="checkout" id="checkout">
-
-    <h2>📦 Checkout</h2>
-
-    <label for="name">Full Name</label>
-    <input
-      type="text"
-      id="name"
-      placeholder="Enter your full name"
-    >
-
-    <label for="mobile">Mobile Number</label>
-    <input
-      type="tel"
-      id="mobile"
-      placeholder="Enter your mobile number"
-      maxlength="10"
-    >
-
-    <label for="address">Delivery Address</label>
-    <textarea
-      id="address"
-      placeholder="Enter your complete delivery address"
-    ></textarea>
-
-    <button class="place-order" onclick="placeOrder()">
-      Place Order
+  <div class="product">
+    <div class="product-image">⌚</div>
+    <h3>Smart Watch</h3>
+    <p>Premium Smart Watch</p>
+    <p class="price">₹999</p>
+    <button onclick="addToCart('Smart Watch',999)">
+      Add to Cart
     </button>
+  </div>
 
-    <p id="message"></p>
+  <div class="product">
+    <div class="product-image">🎧</div>
+    <h3>Wireless Headphones</h3>
+    <p>High Quality Headphones</p>
+    <p class="price">₹1499</p>
+    <button onclick="addToCart('Wireless Headphones',1499)">
+      Add to Cart
+    </button>
+  </div>
 
-  </section>
+  <div class="product">
+    <div class="product-image">👟</div>
+    <h3>Running Shoes</h3>
+    <p>Comfortable Running Shoes</p>
+    <p class="price">₹1999</p>
+    <button onclick="addToCart('Running Shoes',1999)">
+      Add to Cart
+    </button>
+  </div>
 
-  <footer>
-    <p>© 2026 Saurabh Store</p>
-    <p>Thank you for shopping with us ❤️</p>
-  </footer>
+</section>
 
-  <script>
+<section class="cart" id="cart">
 
-    let cart = [];
+  <h2>🛒 Your Cart</h2>
 
-    function addToCart(name, price) {
+  <div id="cartItems">
+    <p>Your cart is empty.</p>
+  </div>
 
-      let existingItem = cart.find(function(item) {
-        return item.name === name;
-      });
+  <div class="total">
+    Total: ₹<span id="total">0</span>
+  </div>
 
-      if (existingItem) {
-        existingItem.quantity++;
-      } else {
-        cart.push({
-          name: name,
-          price: price,
-          quantity: 1
-        });
-      }
+</section>
 
-      displayCart();
+<section class="checkout" id="checkout">
 
-      document.getElementById("cart").scrollIntoView({
-        behavior: "smooth"
-      });
+  <h2>📦 Checkout</h2>
+
+  <label>Full Name</label>
+  <input
+    type="text"
+    id="name"
+    placeholder="Enter your full name"
+  >
+
+  <label>Mobile Number</label>
+  <input
+    type="tel"
+    id="mobile"
+    placeholder="Enter 10-digit mobile number"
+    maxlength="10"
+  >
+
+  <label>Delivery Address</label>
+  <textarea
+    id="address"
+    placeholder="House no, street, area..."
+  ></textarea>
+
+  <label>City</label>
+  <input
+    type="text"
+    id="city"
+    placeholder="Enter your city"
+  >
+
+  <label>PIN Code</label>
+  <input
+    type="text"
+    id="pin"
+    placeholder="Enter 6-digit PIN code"
+    maxlength="6"
+  >
+
+  <button class="place-order" onclick="placeOrder()">
+    ✅ Place Demo Order
+  </button>
+
+  <p id="message"></p>
+
+</section>
+
+<footer>
+  <p>© 2026 Saurabh Store</p>
+  <p>Demo Shopping Website</p>
+</footer>
+
+<script>
+
+let cart = [];
+
+function addToCart(name, price) {
+
+  let item = cart.find(function(product) {
+    return product.name === name;
+  });
+
+  if (item) {
+    item.quantity++;
+  } else {
+    cart.push({
+      name: name,
+      price: price,
+      quantity: 1
+    });
+  }
+
+  displayCart();
+}
+
+function increase(index) {
+  cart[index].quantity++;
+  displayCart();
+}
+
+function decrease(index) {
+
+  if (cart[index].quantity > 1) {
+    cart[index].quantity--;
+  } else {
+    cart.splice(index, 1);
+  }
+
+  displayCart();
+}
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  displayCart();
+}
+
+function displayCart() {
+
+  let cartItems = document.getElementById("cartItems");
+  let total = 0;
+
+  if (cart.length === 0) {
+
+    cartItems.innerHTML = "<p>Your cart is empty.</p>";
+    document.getElementById("total").innerText = "0";
+
+    return;
+  }
+
+  let html = "";
+
+  cart.forEach(function(item, index) {
+
+    let itemTotal = item.price * item.quantity;
+
+    total += itemTotal;
+
+    html += `
+      <div class="cart-item">
+
+        <div>
+          <strong>${item.name}</strong>
+          <br>
+          ₹${item.price} × ${item.quantity}
+        </div>
+
+        <div class="quantity">
+
+          <button onclick="decrease(${index})">−</button>
+
+          <strong>${item.quantity}</strong>
+
+          <button onclick="increase(${index})">+</button>
+
+          <button class="remove"
+                  onclick="removeItem(${index})">
+            Remove
+          </button>
+
+        </div>
+
+      </div>
+    `;
+  });
+
+  cartItems.innerHTML = html;
+
+  document.getElementById("total").innerText = total;
+}
+
+function searchProducts() {
+
+  let search =
+    document.getElementById("search").value.toLowerCase();
+
+  let products =
+    document.querySelectorAll(".product");
+
+  products.forEach(function(product) {
+
+    let name =
+      product.querySelector("h3").innerText.toLowerCase();
+
+    if (name.includes(search)) {
+      product.style.display = "block";
+    } else {
+      product.style.display = "none";
     }
 
+  });
+}
 
-    function increaseQuantity(index) {
+function placeOrder() {
 
-      cart[index].quantity++;
+  let name =
+    document.getElementById("name").value.trim();
 
-      displayCart();
-    }
+  let mobile =
+    document.getElementById("mobile").value.trim();
 
+  let address =
+    document.getElementById("address").value.trim();
 
-    function decreaseQuantity(index) {
+  let city =
+    document.getElementById("city").value.trim();
 
-      if (cart[index].quantity > 1) {
-        cart[index].quantity--;
-      } else {
-        cart.splice(index, 1);
-      }
+  let pin =
+    document.getElementById("pin").value.trim();
 
-      displayCart();
-    }
+  let message =
+    document.getElementById("message");
 
+  if (cart.length === 0) {
 
-    function removeItem(index) {
+    message.innerText =
+      "❌ Please add a product to cart first.";
 
-      cart.splice(index, 1);
+    return;
+  }
 
-      displayCart();
-    }
+  if (
+    name === "" ||
+    mobile === "" ||
+    address === "" ||
+    city === "" ||
+    pin === ""
+  ) {
 
+    message.innerText =
+      "❌ Please fill all customer details.";
 
-    function displayCart() {
+    return;
+  }
 
-      let cartItems = document.getElementById("cartItems");
-      let total = 0;
+  if (!/^[0-9]{10}$/.test(mobile)) {
 
-      if (cart.length === 0) {
+    message.innerText =
+      "❌ Please enter a valid 10-digit mobile number.";
 
-        cartItems.innerHTML = "<p>Your cart is empty.</p>";
+    return;
+  }
 
-        document.getElementById("total").innerText = "0";
+  if (!/^[0-9]{6}$/.test(pin)) {
 
-        return;
-      }
+    message.innerText =
+      "❌ Please enter a valid 6-digit PIN code.";
 
-      let html = "";
+    return;
+  }
 
-      cart.forEach(function(item, index) {
+  message.innerText =
+    "✅ Demo Order Placed Successfully! Thank you, " + name + "!";
 
-        let itemTotal = item.price * item.quantity;
+}
 
-        total += itemTotal;
-
-        html += `
-          <div class="cart-item">
-
-            <div>
-              <strong>${item.name}</strong>
-              <br>
-              ₹${item.price} × ${item.quantity}
-            </div>
-
-            <div class="quantity">
-
-              <button onclick="decreaseQuantity(${index})">
-                −
-              </button>
-
-              <strong>${item.quantity}</strong>
-
-              <button onclick="increaseQuantity(${index})">
-                +
-              </button>
-
-              <button class="remove" onclick="removeItem(${index})">
-                Remove
-              </button>
-
-            </div>
-
-          </div>
-        `;
-      });
-
-      cartItems.innerHTML = html;
-
-      document.getElementById("total").innerText = total;
-    }
-
-
-    function placeOrder() {
-
-      let name = document.getElementById("name").value.trim();
-      let mobile = document.getElementById("mobile").value.trim();
-      let address = document.getElementById("address").value.trim();
-      let message = document.getElementById("message");
-
-      if (cart.length === 0) {
-
-        message.innerText = "Please add a product to cart first.";
-
-        return;
-      }
-
-      if (name === "" || mobile === "" || address === "") {
-
-        message.innerText =
-          "Please fill Name, Mobile Number and Address.";
-
-        return;
-      }
-
-      if (!/^[0-9]{10}$/.test(mobile)) {
-
-        message.innerText =
-          "Please enter a valid 10-digit mobile number.";
-
-        return;
-      }
-
-      message.innerText =
-        "✅ Order details received! This is a demo checkout.";
-
-    }
-
-  </script>
+</script>
 
 </body>
 </html>
