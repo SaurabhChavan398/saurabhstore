@@ -1,11 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>saurabh store</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saurabh Store</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      background: #1f2937;
+      padding: 12px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 40px 20px;
+      background: white;
+    }
+
+    .hero h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .products {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 30px 15px;
+    }
+
+    .product {
+      background: white;
+      width: 250px;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 3px 12px #ccc;
+    }
+
+    .product .image {
+      font-size: 70px;
+      margin-bottom: 15px;
+    }
+
+    .product h3 {
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 10px;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    #cart {
+      text-align: center;
+      margin: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    #cartItems {
+      max-width: 500px;
+      margin: auto;
+      padding: 10px;
+    }
+
+    footer {
+      margin-top: 30px;
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
 </head>
+
 <body>
-    
+
+  <header>
+    <h1>🛍️ Saurabh Store</h1>
+    <p>Your Online Shopping Store</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#products">Products</a>
+    <a href="#cart">Cart</a>
+  </nav>
+
+  <section class="hero">
+    <h2>Welcome to Saurabh Store</h2>
+    <p>Shop your favourite products online!</p>
+  </section>
+
+  <div id="cart">
+    🛒 Cart: <span id="cartCount">0</span>
+  </div>
+
+  <section class="products" id="products">
+
+    <div class="product">
+      <div class="image">⌚</div>
+      <h3>Smart Watch</h3>
+      <p class="price">₹999</p>
+      <button onclick="addToCart('Smart Watch', 999)">
+        Add to Cart
+      </button>
+    </div>
+
+    <div class="product">
+      <div class="image">🎧</div>
+      <h3>Wireless Headphones</h3>
+      <p class="price">₹1499</p>
+      <button onclick="addToCart('Wireless Headphones', 1499)">
+        Add to Cart
+      </button>
+    </div>
+
+    <div class="product">
+      <div class="image">👟</div>
+      <h3>Running Shoes</h3>
+      <p class="price">₹1999</p>
+      <button onclick="addToCart('Running Shoes', 1999)">
+        Add to Cart
+      </button>
+    </div>
+
+  </section>
+
+  <div id="cartItems"></div>
+
+  <footer>
+    <p>© 2026 Saurabh Store</p>
+  </footer>
+
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      cart.push({ name: name, price: price });
+
+      document.getElementById("cartCount").innerText = cart.length;
+
+      let items = "";
+
+      cart.forEach(function(item) {
+        items += "<p>" + item.name + " - ₹" + item.price + "</p>";
+      });
+
+      document.getElementById("cartItems").innerHTML = items;
+    }
+  </script>
+
 </body>
 </html>
