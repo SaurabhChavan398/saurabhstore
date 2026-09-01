@@ -1,718 +1,467 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saurabh Store</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+  <title>Saurabh Store</title>
 
-        html {
-            scroll-behavior: smooth;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            color: #222;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
 
-        /* NAVBAR */
-        nav {
-            background: #111827;
-            padding: 16px 25px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+    header {
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+    }
 
-        .logo {
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-        }
+    header h1 {
+      margin-bottom: 8px;
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 22px;
-            align-items: center;
-        }
+    nav {
+      background: #1f2937;
+      padding: 14px;
+      text-align: center;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-        }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
 
-        nav a:hover {
-            color: #f59e0b;
-        }
+    .hero {
+      background: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
 
-        #cart {
-            background: #f59e0b;
-            padding: 9px 14px;
-            border-radius: 8px;
-            color: white;
-            font-weight: bold;
-        }
+    .hero h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
 
-        /* HERO */
-        .hero {
-            background: linear-gradient(135deg, #1d4ed8, #111827);
-            color: white;
-            text-align: center;
-            padding: 70px 20px;
-        }
+    .products {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 30px 15px;
+    }
 
-        .hero h1 {
-            font-size: 45px;
-            margin-bottom: 10px;
-        }
+    .product {
+      background: white;
+      width: 250px;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 3px 12px #ccc;
+    }
 
-        .hero p {
-            font-size: 19px;
-        }
+    .product-image {
+      font-size: 70px;
+      margin-bottom: 15px;
+    }
 
-        .shop-btn {
-            background: #f59e0b;
-            color: white;
-            border: none;
-            padding: 14px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 17px;
-            margin-top: 15px;
-        }
+    .product h3 {
+      margin-bottom: 10px;
+    }
 
-        .shop-btn:hover {
-            background: #d97706;
-        }
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 12px;
+    }
 
-        /* SEARCH */
-        .search-box {
-            text-align: center;
-            padding: 30px 15px 10px;
-        }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 7px;
+      cursor: pointer;
+      margin: 4px;
+    }
 
-        .search-box input {
-            width: 90%;
-            max-width: 500px;
-            padding: 14px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-        }
+    button:hover {
+      background: #1d4ed8;
+    }
 
-        /* PRODUCTS */
-        .section-title {
-            text-align: center;
-            margin: 35px 0 20px;
-            color: #111827;
-        }
+    .cart-section,
+    .checkout {
+      background: white;
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px #ccc;
+    }
 
-        .products {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
-            padding: 10px 25px 40px;
-        }
+    .cart-section h2,
+    .checkout h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-        .product {
-            background: white;
-            width: 230px;
-            padding: 18px;
-            border-radius: 14px;
-            text-align: center;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.12);
-            transition: 0.3s;
-        }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding: 12px 0;
+      gap: 10px;
+    }
 
-        .product:hover {
-            transform: translateY(-8px);
-        }
+    .quantity button {
+      padding: 5px 10px;
+    }
 
-        .product img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
+    .remove {
+      background: #dc2626;
+    }
 
-        .product h3 {
-            color: #1d4ed8;
-            margin-bottom: 8px;
-        }
+    .remove:hover {
+      background: #b91c1c;
+    }
 
-        .price {
-            font-size: 20px;
-            font-weight: bold;
-            color: #111827;
-        }
+    .total {
+      text-align: right;
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
 
-        .add-btn {
-            background: #1d4ed8;
-            color: white;
-            border: none;
-            padding: 11px 18px;
-            border-radius: 7px;
-            cursor: pointer;
-        }
+    .checkout label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
 
-        .add-btn:hover {
-            background: #2563eb;
-        }
+    .checkout input,
+    .checkout textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      font-size: 16px;
+    }
 
-        /* CART */
-        #cartSection {
-            background: white;
-            margin: 30px auto;
-            padding: 30px;
-            width: 90%;
-            max-width: 850px;
-            border-radius: 15px;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.1);
-        }
+    .checkout textarea {
+      height: 100px;
+      resize: vertical;
+    }
 
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #ddd;
-            padding: 15px 0;
-            gap: 10px;
-        }
+    .place-order {
+      width: 100%;
+      margin-top: 20px;
+      font-size: 18px;
+      padding: 13px;
+      background: #16a34a;
+    }
 
-        .quantity button {
-            padding: 5px 10px;
-            margin: 0 4px;
-            background: #111827;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    .place-order:hover {
+      background: #15803d;
+    }
 
-        .remove-btn {
-            background: #dc2626;
-            color: white;
-            border: none;
-            padding: 7px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+    #message {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+    }
 
-        .total {
-            text-align: right;
-            font-size: 23px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
+    footer {
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 22px;
+      margin-top: 40px;
+    }
 
-        .checkout-btn {
-            background: #16a34a;
-            color: white;
-            border: none;
-            padding: 13px 22px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            float: right;
-            margin-top: 10px;
-        }
+    @media (max-width: 600px) {
+      .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
 
-        .clear {
-            clear: both;
-        }
+      .hero h2 {
+        font-size: 25px;
+      }
 
-        /* CHECKOUT */
-        #checkout {
-            background: white;
-            width: 90%;
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.1);
-        }
-
-        #checkout input,
-        #checkout textarea {
-            width: 100%;
-            padding: 13px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 7px;
-            font-size: 15px;
-        }
-
-        #checkout textarea {
-            height: 100px;
-            resize: vertical;
-        }
-
-        .place-order {
-            width: 100%;
-            background: #16a34a;
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 8px;
-            font-size: 17px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        /* CONTACT */
-        .contact {
-            background: #111827;
-            color: white;
-            text-align: center;
-            padding: 35px 20px;
-            margin-top: 40px;
-        }
-
-        /* MESSAGE */
-        #message {
-            display: none;
-            text-align: center;
-            background: #dcfce7;
-            color: #166534;
-            padding: 15px;
-            margin: 20px auto;
-            width: 90%;
-            max-width: 700px;
-            border-radius: 8px;
-            font-weight: bold;
-        }
-
-        @media (max-width: 700px) {
-            nav {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            .cart-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-    </style>
+      nav a {
+        margin: 0 8px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav>
-        <div class="logo">Saurabh Store</div>
+  <header>
+    <h1>🛍️ Saurabh Store</h1>
+    <p>Your Online Shopping Store</p>
+  </header>
 
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#products">Products</a>
-            <a href="#cartSection">Cart</a>
-            <a href="#checkout">Checkout</a>
-            <a href="#contact">Contact</a>
-            <a href="#cartSection" id="cart">Cart (0)</a>
-        </div>
-    </nav>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#products">Products</a>
+    <a href="#cart">Cart</a>
+    <a href="#checkout">Checkout</a>
+  </nav>
 
+  <section class="hero" id="home">
+    <h2>Welcome to Saurabh Store</h2>
+    <p>Shop your favourite products online!</p>
+  </section>
 
-    <!-- HOME -->
-    <section class="hero" id="home">
-        <h1>Welcome to Saurabh Store</h1>
-        <p>Quality Products • Great Prices • Easy Shopping</p>
+  <section class="products" id="products">
 
-        <button class="shop-btn"
-                onclick="document.getElementById('products').scrollIntoView()">
-            Shop Now
-        </button>
-    </section>
-
-
-    <!-- SEARCH -->
-    <div class="search-box">
-        <input
-            type="text"
-            id="search"
-            placeholder="Search products..."
-            onkeyup="searchProducts()">
+    <div class="product">
+      <div class="product-image">⌚</div>
+      <h3>Smart Watch</h3>
+      <p>Premium Smart Watch</p>
+      <p class="price">₹999</p>
+      <button onclick="addToCart('Smart Watch', 999)">
+        Add to Cart
+      </button>
     </div>
 
-
-    <!-- PRODUCTS -->
-    <h2 class="section-title" id="products">Our Products</h2>
-
-    <div class="products">
-
-        <div class="product">
-            <img
-                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500"
-                alt="Smart Watch">
-
-            <h3>Smart Watch</h3>
-            <p class="price">₹999</p>
-
-            <button class="add-btn"
-                onclick="addToCart('Smart Watch', 999)">
-                Add to Cart
-            </button>
-        </div>
-
-
-        <div class="product">
-            <img
-                src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"
-                alt="Wireless Headphones">
-
-            <h3>Wireless Headphones</h3>
-            <p class="price">₹1499</p>
-
-            <button class="add-btn"
-                onclick="addToCart('Wireless Headphones', 1499)">
-                Add to Cart
-            </button>
-        </div>
-
-
-        <div class="product">
-            <img
-                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"
-                alt="Running Shoes">
-
-            <h3>Running Shoes</h3>
-            <p class="price">₹1999</p>
-
-            <button class="add-btn"
-                onclick="addToCart('Running Shoes', 1999)">
-                Add to Cart
-            </button>
-        </div>
-
+    <div class="product">
+      <div class="product-image">🎧</div>
+      <h3>Wireless Headphones</h3>
+      <p>High Quality Headphones</p>
+      <p class="price">₹1499</p>
+      <button onclick="addToCart('Wireless Headphones', 1499)">
+        Add to Cart
+      </button>
     </div>
 
+    <div class="product">
+      <div class="product-image">👟</div>
+      <h3>Running Shoes</h3>
+      <p>Comfortable Running Shoes</p>
+      <p class="price">₹1999</p>
+      <button onclick="addToCart('Running Shoes', 1999)">
+        Add to Cart
+      </button>
+    </div>
 
-    <!-- CART -->
-    <section id="cartSection">
+  </section>
 
-        <h2>Your Cart 🛒</h2>
+  <section class="cart-section" id="cart">
+    <h2>🛒 Your Cart</h2>
 
-        <div id="cartItems">
-            <p>Your cart is empty.</p>
-        </div>
+    <div id="cartItems">
+      <p>Your cart is empty.</p>
+    </div>
 
-    </section>
+    <div class="total">
+      Total: ₹<span id="total">0</span>
+    </div>
+  </section>
 
+  <section class="checkout" id="checkout">
 
-    <!-- CHECKOUT -->
-    <section id="checkout">
+    <h2>📦 Checkout</h2>
 
-        <h2>Checkout</h2>
+    <label for="name">Full Name</label>
+    <input
+      type="text"
+      id="name"
+      placeholder="Enter your full name"
+    >
 
-        <input
-            type="text"
-            id="customerName"
-            placeholder="Full Name">
+    <label for="mobile">Mobile Number</label>
+    <input
+      type="tel"
+      id="mobile"
+      placeholder="Enter your mobile number"
+      maxlength="10"
+    >
 
-        <input
-            type="tel"
-            id="customerPhone"
-            placeholder="Mobile Number">
+    <label for="address">Delivery Address</label>
+    <textarea
+      id="address"
+      placeholder="Enter your complete delivery address"
+    ></textarea>
 
-        <textarea
-            id="customerAddress"
-            placeholder="Delivery Address"></textarea>
+    <button class="place-order" onclick="placeOrder()">
+      Place Order
+    </button>
 
-        <button class="place-order" onclick="placeOrder()">
-            Place Order
-        </button>
+    <p id="message"></p>
 
-    </section>
+  </section>
 
+  <footer>
+    <p>© 2026 Saurabh Store</p>
+    <p>Thank you for shopping with us ❤️</p>
+  </footer>
 
-    <div id="message"></div>
+  <script>
 
+    let cart = [];
 
-    <!-- CONTACT -->
-    <section class="contact" id="contact">
+    function addToCart(name, price) {
 
-        <h2>Contact Us</h2>
+      let existingItem = cart.find(function(item) {
+        return item.name === name;
+      });
 
-        <p>Email: saurabhstore@gmail.com</p>
-        <p>Phone: +91 9850195173</p>
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        cart.push({
+          name: name,
+          price: price,
+          quantity: 1
+        });
+      }
 
-        <p>© 2026 Saurabh Store</p>
+      displayCart();
 
-    </section>
+      document.getElementById("cart").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
 
 
-    <!-- JAVASCRIPT -->
-    <script>
+    function increaseQuantity(index) {
 
-        let cart = [];
+      cart[index].quantity++;
 
+      displayCart();
+    }
 
-        // ADD TO CART
-        function addToCart(productName, price) {
 
-            let existingProduct = cart.find(
-                item => item.name === productName
-            );
+    function decreaseQuantity(index) {
 
-            if (existingProduct) {
-                existingProduct.quantity++;
-            } else {
-                cart.push({
-                    name: productName,
-                    price: price,
-                    quantity: 1
-                });
-            }
+      if (cart[index].quantity > 1) {
+        cart[index].quantity--;
+      } else {
+        cart.splice(index, 1);
+      }
 
-            updateCart();
+      displayCart();
+    }
 
-            document.getElementById("cartSection")
-                .scrollIntoView();
-        }
 
+    function removeItem(index) {
 
-        // UPDATE CART
-        function updateCart() {
+      cart.splice(index, 1);
 
-            let cartItems =
-                document.getElementById("cartItems");
+      displayCart();
+    }
 
-            let cartCount = 0;
-            let total = 0;
 
-            cartItems.innerHTML = "";
+    function displayCart() {
 
+      let cartItems = document.getElementById("cartItems");
+      let total = 0;
 
-            if (cart.length === 0) {
+      if (cart.length === 0) {
 
-                cartItems.innerHTML =
-                    "<p>Your cart is empty.</p>";
+        cartItems.innerHTML = "<p>Your cart is empty.</p>";
 
-                document.getElementById("cart").innerText =
-                    "Cart (0)";
+        document.getElementById("total").innerText = "0";
 
-                return;
-            }
+        return;
+      }
 
+      let html = "";
 
-            cart.forEach(function(item, index) {
+      cart.forEach(function(item, index) {
 
-                cartCount += item.quantity;
+        let itemTotal = item.price * item.quantity;
 
-                total +=
-                    item.price * item.quantity;
+        total += itemTotal;
 
+        html += `
+          <div class="cart-item">
 
-                cartItems.innerHTML += `
+            <div>
+              <strong>${item.name}</strong>
+              <br>
+              ₹${item.price} × ${item.quantity}
+            </div>
 
-                    <div class="cart-item">
+            <div class="quantity">
 
-                        <div>
-                            <strong>${item.name}</strong>
-                            <br>
-                            ₹${item.price}
-                        </div>
+              <button onclick="decreaseQuantity(${index})">
+                −
+              </button>
 
-                        <div class="quantity">
+              <strong>${item.quantity}</strong>
 
-                            <button
-                                onclick="changeQuantity(${index}, -1)">
-                                −
-                            </button>
+              <button onclick="increaseQuantity(${index})">
+                +
+              </button>
 
-                            ${item.quantity}
+              <button class="remove" onclick="removeItem(${index})">
+                Remove
+              </button>
 
-                            <button
-                                onclick="changeQuantity(${index}, 1)">
-                                +
-                            </button>
+            </div>
 
-                        </div>
+          </div>
+        `;
+      });
 
-                        <div>
-                            ₹${item.price * item.quantity}
-                        </div>
+      cartItems.innerHTML = html;
 
-                        <button
-                            class="remove-btn"
-                            onclick="removeFromCart(${index})">
-                            Remove
-                        </button>
+      document.getElementById("total").innerText = total;
+    }
 
-                    </div>
-                `;
-            });
 
+    function placeOrder() {
 
-            document.getElementById("cart").innerText =
-                "Cart (" + cartCount + ")";
+      let name = document.getElementById("name").value.trim();
+      let mobile = document.getElementById("mobile").value.trim();
+      let address = document.getElementById("address").value.trim();
+      let message = document.getElementById("message");
 
+      if (cart.length === 0) {
 
-            cartItems.innerHTML += `
+        message.innerText = "Please add a product to cart first.";
 
-                <div class="total">
-                    Total: ₹${total}
-                </div>
+        return;
+      }
 
-                <button
-                    class="checkout-btn"
-                    onclick="goToCheckout()">
-                    Proceed to Checkout
-                </button>
+      if (name === "" || mobile === "" || address === "") {
 
-                <div class="clear"></div>
-            `;
-        }
+        message.innerText =
+          "Please fill Name, Mobile Number and Address.";
 
+        return;
+      }
 
-        // CHANGE QUANTITY
-        function changeQuantity(index, amount) {
+      if (!/^[0-9]{10}$/.test(mobile)) {
 
-            cart[index].quantity += amount;
+        message.innerText =
+          "Please enter a valid 10-digit mobile number.";
 
-            if (cart[index].quantity <= 0) {
-                cart.splice(index, 1);
-            }
+        return;
+      }
 
-            updateCart();
-        }
+      message.innerText =
+        "✅ Order details received! This is a demo checkout.";
 
+    }
 
-        // REMOVE
-        function removeFromCart(index) {
-
-            cart.splice(index, 1);
-
-            updateCart();
-        }
-
-
-        // GO TO CHECKOUT
-        function goToCheckout() {
-
-            document.getElementById("checkout")
-                .scrollIntoView();
-
-        }
-
-
-        // SEARCH
-        function searchProducts() {
-
-            let searchText =
-                document.getElementById("search")
-                .value
-                .toLowerCase();
-
-            let products =
-                document.querySelectorAll(".product");
-
-
-            products.forEach(function(product) {
-
-                let name =
-                    product.querySelector("h3")
-                    .innerText
-                    .toLowerCase();
-
-                if (name.includes(searchText)) {
-                    product.style.display = "block";
-                } else {
-                    product.style.display = "none";
-                }
-
-            });
-        }
-
-
-        // PLACE ORDER
-        function placeOrder() {
-
-            let name =
-                document.getElementById("customerName")
-                .value.trim();
-
-            let phone =
-                document.getElementById("customerPhone")
-                .value.trim();
-
-            let address =
-                document.getElementById("customerAddress")
-                .value.trim();
-
-
-            if (cart.length === 0) {
-
-                alert("Please add a product to your cart first.");
-
-                return;
-            }
-
-
-            if (name === "" ||
-                phone === "" ||
-                address === "") {
-
-                alert("Please fill all checkout details.");
-
-                return;
-            }
-
-
-            let orderNumber =
-                Math.floor(100000 + Math.random() * 900000);
-
-
-            let message =
-                document.getElementById("message");
-
-
-            message.style.display = "block";
-
-            message.innerText =
-                "Order #" + orderNumber +
-                " placed successfully! Thank you, " +
-                name + ".";
-
-
-            cart = [];
-
-            updateCart();
-
-
-            document.getElementById("customerName").value = "";
-            document.getElementById("customerPhone").value = "";
-            document.getElementById("customerAddress").value = "";
-
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-        }
-
-    </script>
+  </script>
 
 </body>
 </html>
